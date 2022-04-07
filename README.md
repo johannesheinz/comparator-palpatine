@@ -1,8 +1,10 @@
 # Comparator Palpatine
 
 [![CI](https://github.com/johannesheinz/comparator-palpatine/actions/workflows/ci.yml/badge.svg)](https://github.com/johannesheinz/comparator-palpatine/actions/workflows/ci.yml)
+[![License](https://img.shields.io/github/license/johannesheinz/comparator-palpatine)](https://github.com/johannesheinz/comparator-palpatine/blob/main/LICENSE)
+[![Version](https://img.shields.io/github/package-json/v/johannesheinz/comparator-palpatine)](https://github.com/johannesheinz/comparator-palpatine/blob/main/package.json)
 
-[GO TO WEB APPLICATION](https://johannesheinz.github.io/comparator-palpatine)
+![launch.png](https://johannesheinz.github.io/comparator-palpatine)
 
 ![Imperator Palpatine](https://qph.fs.quoracdn.net/main-qimg-c2142df94f85fe4a51e4853e36e6f26b-lq "Imperator Palpatine")
 
