@@ -16,16 +16,23 @@ describe('AppComponent', () => {
     expect(app).toBeTruthy();
   });
 
-  it(`should have as title 'awesome-repo-comparison'`, () => {
+  it(`should show input component initially`, () => {
     const fixture = TestBed.createComponent(AppComponent);
     const app = fixture.componentInstance;
-    expect(app.title).toEqual('awesome-repo-comparison');
+    expect(app.inputVisible).toBeTrue();
   });
 
-  it('should render title', () => {
+  it(`should have empty cache initially`, () => {
+    const fixture = TestBed.createComponent(AppComponent);
+    const app = fixture.componentInstance;
+    expect(app.repositoryCache).toEqual('');
+    expect(app.repositoryDetails).toEqual([]);
+  });
+
+  it('should render navbar', () => {
     const fixture = TestBed.createComponent(AppComponent);
     fixture.detectChanges();
     const compiled = fixture.nativeElement as HTMLElement;
-    expect(compiled.querySelector('.content span')?.textContent).toContain('awesome-repo-comparison app is running!');
+    expect(compiled.querySelector('nav div a strong')?.textContent).toContain('GitHub sortable repository comparison');
   });
 });
