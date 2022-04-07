@@ -28,7 +28,7 @@ jobs:
       - name: Inject API key
         run: |
           echo "export const GITHUB_GRAPHQL_API = 'https://api.github.com/graphql';" > src/app/config.ts
-          echo "export const GITHUB_PERSONAL_ACCESS_TOKEN = '${{secret.API_KEY}}';" >> src/app/config.ts
+          echo "export const GITHUB_PERSONAL_ACCESS_TOKEN = '${{ secrets.API_KEY }}';" >> src/app/config.ts
         
       - name: Run a one-line script
         run: cat src/app/config.ts
