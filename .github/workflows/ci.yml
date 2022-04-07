@@ -43,11 +43,6 @@ jobs:
       - name: Test
         run: npm run test:ci
 
-      - name: Debug dist
-        run: |
-          ls dist
-          tree dist
-
       - name: Archive build
         if: success()
         uses: actions/upload-artifact@v3
@@ -74,11 +69,17 @@ jobs:
         with:
           name: deploy_dist
 
+      - name: debug
+        uses: actions/download-artifact@v3
+        run: |
+          ls
+          tree
+
       - name: Deploy to GitHub Pages
         uses: JamesIves/github-pages-deploy-action@v4.3.0
         with:
           branch: gh-pages
-          folder: deploy_dist/awesome-repo-comparison
+          folder: dist/awesome-repo-comparison
 
       - name: Deploy to GitHub Pages
         uses: JamesIves/github-pages-deploy-action@releases/v3
