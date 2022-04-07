@@ -55,7 +55,7 @@ jobs:
         uses: actions/upload-artifact@v3
         with:
           name: deploy_coverage
-          path:
+          path: coverage
 
   deploy:
     runs-on: ubuntu-latest
