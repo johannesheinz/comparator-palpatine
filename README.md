@@ -1,6 +1,6 @@
 # Comparator Palpatine
 
-![https://qph.fs.quoracdn.net/main-qimg-c2142df94f85fe4a51e4853e36e6f26b-lq]
+![Imperator Palpatine](https://qph.fs.quoracdn.net/main-qimg-c2142df94f85fe4a51e4853e36e6f26b-lq "Imperator Palpatine")
 
 This is an Angular web app that extracts all GitHub URLs from a given blob of text and displays all relevant info in a sortable table.
 
