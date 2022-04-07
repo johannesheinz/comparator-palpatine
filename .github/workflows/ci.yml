@@ -43,6 +43,11 @@ jobs:
       - name: Test
         run: npm run test:ci
 
+      - name: Debug dist
+        run: |
+          ls dist
+          tree dist
+
       - name: Archive build
         if: success()
         uses: actions/upload-artifact@v3

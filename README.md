@@ -1,6 +1,6 @@
 # Comparator Palpatine
 
-![CI status](https://github.com/johannesheinz/comparator-palpatine/actions/workflows/ci.yml/badge.svg)
+[![CI](https://github.com/johannesheinz/comparator-palpatine/actions/workflows/ci.yml/badge.svg)](https://github.com/johannesheinz/comparator-palpatine/actions/workflows/ci.yml)
 
 ![Imperator Palpatine](https://qph.fs.quoracdn.net/main-qimg-c2142df94f85fe4a51e4853e36e6f26b-lq "Imperator Palpatine")
 
