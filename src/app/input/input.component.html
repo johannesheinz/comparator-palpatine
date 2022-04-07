@@ -1,17 +1,19 @@
 <section class="section">
   <div class="field">
-    <label class="label">Enter your blob of text containing GitHub URLs</label>
-    <textarea class="textarea" placeholder="Paste your URLs here" rows="20"></textarea>
+    <label class="label" for="url-input">
+      <h2 class="title is-2">Enter your blob of text containing GitHub URLs</h2>
+    </label>
+    <textarea id="url-input" class="textarea" placeholder="Paste your URLs here" rows="30" [(ngModel)]="inputText" (ngModelChange)="handleNewInput($event)"></textarea>
   </div>
 
   <div class="field is-grouped is-pulled-right">
     <p class="control">
-      <button class="button is-danger">
+      <button class="button is-danger" (click)="reset()">
         Reset form
       </button>
     </p>
     <p class="control">
-      <button class="button  is-primary">
+      <button class="button  is-primary" (click)="hideInput.emit()">
         Extract information
       </button>
     </p>
