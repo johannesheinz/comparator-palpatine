@@ -8,11 +8,22 @@ import { GraphQLModule } from './graphql.module';
 import { InputComponent } from './input/input.component';
 import { TableComponent } from './table/table.component';
 
-
 @NgModule({
-  declarations: [AppComponent, TableComponent, AboutComponent, InputComponent],
-  imports: [BrowserModule, GraphQLModule, FormsModule, HttpClientModule],
+  declarations: [
+    AppComponent,
+    TableComponent,
+    AboutComponent,
+    InputComponent,
+  ],
+  imports: [
+    BrowserModule,
+    GraphQLModule,
+    FormsModule,
+    HttpClientModule,
+  ],
   providers: [],
-  bootstrap: [AppComponent],
+  bootstrap: [
+    AppComponent,
+  ],
 })
 export class AppModule {}

@@ -1,3 +1,4 @@
+import { PlatformLocation } from '@angular/common';
 import { Component } from '@angular/core';
 import { GitHubRepo } from './input/input.component';
 
@@ -40,6 +41,10 @@ export class AppComponent {
   inputVisible = true;
   repositoryCache: string = '';
   repositoryDetails: GitHubDetail[] = [];
+
+  constructor(
+    readonly location: PlatformLocation,
+  ) {}
 
   randomInt(max: number): number {
     return Math.floor(Math.random() * max);

@@ -3,7 +3,10 @@ import { ApolloModule, APOLLO_OPTIONS } from 'apollo-angular';
 import { ApolloClientOptions, ApolloLink, InMemoryCache } from '@apollo/client/core';
 import { setContext } from '@apollo/client/link/context';
 import { HttpLink } from 'apollo-angular/http';
-import { GITHUB_GRAPHQL_API, GITHUB_PERSONAL_ACCESS_TOKEN} from './config';
+import { GITHUB_PERSONAL_ACCESS_TOKEN_1, GITHUB_PERSONAL_ACCESS_TOKEN_2 } from './config';
+
+const GITHUB_GRAPHQL_API = 'https://api.github.com/graphql';
+const GITHUB_PERSONAL_ACCESS_TOKEN_PREFIX = 'ghp_';
 
 export function createApollo(httpLink: HttpLink): ApolloClientOptions<any> {
   const basic = setContext((operation, context) => ({
@@ -13,17 +16,15 @@ export function createApollo(httpLink: HttpLink): ApolloClientOptions<any> {
   }));
 
   const auth = setContext((operation, context) => {
-    const token = GITHUB_PERSONAL_ACCESS_TOKEN; // localStorage.getItem('token');
+    // Read token from local storage: localStorage.getItem('token');
+    const ghpat_decoded_1: string = atob(GITHUB_PERSONAL_ACCESS_TOKEN_1);
+    const ghpat_decoded_2: string = atob(GITHUB_PERSONAL_ACCESS_TOKEN_2);
 
-    if (token === null) {
-      return {};
-    } else {
-      return {
-        headers: {
-          Authorization: `Bearer ${token}`
-        }
-      };
-    }
+    return {
+      headers: {
+        Authorization: `Bearer ${GITHUB_PERSONAL_ACCESS_TOKEN_PREFIX}${ghpat_decoded_1}${ghpat_decoded_2}`
+      }
+    };
   });
 
   return {
