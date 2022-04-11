@@ -44,7 +44,7 @@ export const AVAILABLE_COLUMNS: Column[] = [
   new Column(ColumnId.STARS, "Stars", "Number of stars", Icon.STAR, Sorted.DESCENDING),
   new Column(ColumnId.COMMITS, "Commits", "Number of commits", Icon.COMMIT, Sorted.DESCENDING),
   new Column(ColumnId.LICENSE, "License", "What License?", Icon.LEGAL),
-  new Column(ColumnId.CONTRIBUTORS, "Contributors", "Number of contributors", Icon.OCTOCAT, Sorted.DESCENDING),
+  new Column(ColumnId.CONTRIBUTORS, "Contributors", "Number of mentionalble users (approximation for contributors)", Icon.OCTOCAT, Sorted.DESCENDING),
   new Column(ColumnId.BRANCHES, "Branches", "Number of branches", Icon.BRANCH, Sorted.DESCENDING),
   new Column(ColumnId.TAGS, "Tags", "Number of tags", Icon.TAG, Sorted.DESCENDING),
   new Column(ColumnId.ISSUES, "Issues", "Number of issues", Icon.ISSUE, Sorted.DESCENDING),

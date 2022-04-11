@@ -1,7 +1,7 @@
 <section class="section">
   <div *ngIf="!loading && missing && missing.length > 0" class="missing">
     <h4 class="title is-4">There are {{ missing.length | number }} details missing from the API</h4>
-    <em>Usually, this is due to a renamingof the repository.</em>
+    <em>Usually, this is due to a renaming of the repository.</em>
     <ul>
       <li *ngFor="let repo of missing">
         {{ repo.owner }} / {{ repo.project }} &nbsp; ›› &nbsp;  <a [href]="'https://github.com/' + repo.owner + '/' + repo.project" target="_blank">try GitHub directly</a>
@@ -39,12 +39,14 @@
       </thead>
       <tbody>
         <tr *ngFor="let repo of repositories" (click)="repo.toggleSelect()" [class.is-selected]="repo.isSelected()">
-          <th (click)="openUrl(repo.repository_url)">
-            <a target="_blank" [href]="repo.repository_url" >
+          <th (click)="openUrl(repo.repository_url)" [class.archived]="repo.archived">
+            <a target="_blank" [href]="repo.repository_url">
               {{ repo.repo.owner }} /
               <br>
               {{ repo.repo.project }}
             </a>
+            &nbsp;
+            <span *ngIf="repo.archived">(archived)</span>
           </th>
           <td>
             {{ repo.latest_commit_date  | date:'yyyy-MM-dd'}}
@@ -52,7 +54,7 @@
           <td>
             {{ repo.latest_release_date | date:'yyyy-MM-dd' }}
             <br>
-            {{ repo.latest_release_version }}
+            <strong>{{ repo.latest_release_version }}</strong>
           </td>
           <td>
             {{ repo.count_stars }}

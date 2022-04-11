@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Observable, of } from 'rxjs';
+import { delay, Observable, of } from 'rxjs';
 import { GitHubDetail, GitHubRepo } from './table/repository.model';
 
 const LICENSES = ['MIT', 'Apache', 'BSD', 'GPLv2'];
@@ -28,8 +28,8 @@ export class GithubServiceMock {
   }
 
   fetchDetails(repositories: GitHubRepo[]): Observable<GitHubDetail[]> {
-    return of(
-      repositories.map((repo: GitHubRepo) => new GitHubDetail(
+    const details = repositories.map(
+      (repo: GitHubRepo) => new GitHubDetail(
         repo,
         `https://github.com/${repo.owner}/${repo.project}`,
         this.randomDate(),
@@ -44,8 +44,30 @@ export class GithubServiceMock {
         this.randomInt(876),
         this.randomInt(123),
         this.randomLicense(),
-        this.randomInt(2) === 1
-      ))
+        this.randomInt(5) === 1
+      )
     );
+
+    // Remove first and last element
+    if (details.length > 2) {
+      details.pop();
+      details.shift();
+    }
+
+    // Shuffle array
+    details.sort(() => Math.random() - 0.5)
+
+    // Remove first and last element
+    if (details.length > 2) {
+      // Remove first and last element
+      details.pop();
+      details.shift();
+    }
+
+    // Return observable with 2.5s delay
+    return of(details)
+      .pipe(
+        delay(2500)
+      );
   }
 }

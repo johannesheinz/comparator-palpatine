@@ -19,6 +19,23 @@ This is an Angular web app that extracts all GitHub URLs from a given blob of te
 3. Press the `[Enter]` / `[Return]` key to to preceed with the information extraction
 4. Or press `[Esc]` to reset the input form
 
+## Quality of live features
+
+* Duplicate repositories are removed
+* The inital order of the input is kept in the table
+* The columns are configured to offer the most helpful sort direction on the first click
+* You can highlight interesting rows by clicking anywhere (except the first column). This hightlight is kept even when you change sorting. It can be removed by clicking again
+* The first column takes you to the GitHub page
+
+## Caveats
+
+Due to API limitations, ...
+
+* requests are currently limited to 99 repositories
+* the `contributors` column is not really the contributors but an approximation
+* The initial sort of the table is lost once it is sorted in any way
+* The only way back from the table to the input is the navigation at the top right
+
 ---
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 13.3.0.

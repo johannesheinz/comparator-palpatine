@@ -134,6 +134,13 @@ export class GithubService {
       .join(' ');
   }
 
+  private cleanLicense(rawLicense: string | undefined): string {
+    return rawLicense?.trim()
+    .replace('"New" or "Revised" License', '')
+    .replace('"Simplified" License', '')
+     ?? 'None';
+  }
+
   private mapResultToGitHubDetail(json: any): GitHubDetail {
     const repo = json?.nameWithOwner.split('/');
     return new GitHubDetail(
@@ -153,7 +160,7 @@ export class GithubService {
       json?.issues?.totalCount ?? 0,
       json?.pullRequests?.totalCount ?? 0,
       json?.mentionableUsers?.totalCount ?? 0, // there ist no way to get contributors via GraphQL v4 API
-      json?.licenseInfo?.nickname ?? json?.licenseInfo?.name ?? '',
+      this.cleanLicense(json?.licenseInfo?.nickname ?? json?.licenseInfo?.name),
       json.isArchived
     );
   }
