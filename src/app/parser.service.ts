@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { GitHubRepo } from './input/input.component';
+import { GitHubRepo } from './table/repository.model';
 
 // Thanks to https://regex101.com/
 const REGEX_GITHUB = /github.com\/([a-zA-Z0-9_-]+)\/([a-zA-Z0-9_-]+)|([a-zA-Z0-9_-]+).github.io\/([a-zA-Z0-9_-]+)/gm;

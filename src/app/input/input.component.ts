@@ -1,10 +1,6 @@
-import { Component, Output, EventEmitter, Input } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { ParserService } from '../parser.service';
-
-export type GitHubRepo = {
-  owner: string;
-  project: String;
-};
+import { GitHubRepo } from '../table/repository.model';
 
 @Component({
   selector: 'app-input',

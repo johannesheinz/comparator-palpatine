@@ -7,6 +7,7 @@ import { AppComponent } from './app.component';
 import { GraphQLModule } from './graphql.module';
 import { InputComponent } from './input/input.component';
 import { TableComponent } from './table/table.component';
+import { IconComponent } from './icon/icon.component';
 
 @NgModule({
   declarations: [
@@ -14,6 +15,7 @@ import { TableComponent } from './table/table.component';
     TableComponent,
     AboutComponent,
     InputComponent,
+    IconComponent,
   ],
   imports: [
     BrowserModule,

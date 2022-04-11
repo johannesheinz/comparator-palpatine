@@ -12,6 +12,15 @@ This is an Angular web app that extracts all GitHub URLs from a given blob of te
 
 ---
 
+## Shortcuts
+
+1. Visit the web app, the input is automatically focussed
+2. Paste your URLs wiht `[Ctrl] + [V]` (or whatever your OS specifies)
+3. Press the `[Enter]` / `[Return]` key to to preceed with the information extraction
+4. Or press `[Esc]` to reset the input form
+
+---
+
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 13.3.0.
 
 ## Development server
