@@ -5,3 +5,6 @@ test:
 
 serve:
 	ng serve --port 4444
+
+build:
+	ng build --sourceMap=false --configuration production
