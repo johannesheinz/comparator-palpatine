@@ -1,9 +1,17 @@
 import { TestBed } from '@angular/core/testing';
 import { AppComponent } from './app.component';
+import { GithubService } from './github.service';
+import { GithubServiceMock } from './github.service.mock';
 
 describe('AppComponent', () => {
   beforeEach(async () => {
     await TestBed.configureTestingModule({
+      providers: [
+        {
+          provide: GithubService,
+          useClass: GithubServiceMock,
+        }
+      ],
       declarations: [
         AppComponent
       ],
