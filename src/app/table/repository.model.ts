@@ -9,8 +9,8 @@ export class GitHubDetail {
   constructor(
     readonly repo: GitHubRepo,
     readonly repository_url: string,
-    readonly latest_commit_date: Date,
-    readonly latest_release_date: Date,
+    readonly latest_commit_date: Date | null,
+    readonly latest_release_date: Date | null,
     readonly latest_release_version: string,
     readonly count_commits: number,
     readonly count_forks: number,
@@ -21,6 +21,7 @@ export class GitHubDetail {
     readonly count_pull_requests: number,
     readonly count_contributors: number,
     readonly license: string,
+    readonly archived: boolean,
   ) { }
 
   private selected = false;
@@ -41,9 +42,9 @@ export class GitHubDetail {
         case ColumnId.REPO:
           return (this.repo.owner + this.repo.project).localeCompare(other.repo.owner + other.repo.project);
         case ColumnId.LAST_COMMIT:
-          return this.latest_commit_date.valueOf() - other.latest_commit_date.valueOf();
+          return (this.latest_commit_date?.valueOf() ?? 0) - (other.latest_commit_date?.valueOf() ?? 0);
         case ColumnId.LAST_RELEASE:
-          return this.latest_release_date.valueOf() - other.latest_release_date.valueOf();
+          return (this.latest_release_date?.valueOf() ?? 0) - (other.latest_release_date?.valueOf() ?? 0);
         case ColumnId.STARS:
           return this.count_stars - other.count_stars;
         case ColumnId.COMMITS:
@@ -62,6 +63,8 @@ export class GitHubDetail {
           return this.count_pull_requests - other.count_pull_requests;
         case ColumnId.FORKS:
           return this.count_forks - other.count_forks;
+        case ColumnId.ARCHIVED:
+          return (!this.archived ? 0 : 1) - (!other.archived ? 0 : 1);
       }
     }
     return 0;

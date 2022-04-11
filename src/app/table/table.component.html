@@ -1,9 +1,30 @@
 <section class="section">
+  <div *ngIf="!loading && missing && missing.length > 0" class="missing">
+    <h4 class="title is-4">There are {{ missing.length | number }} details missing from the API</h4>
+    <em>Usually, this is due to a renamingof the repository.</em>
+    <ul>
+      <li *ngFor="let repo of missing">
+        {{ repo.owner }} / {{ repo.project }} &nbsp; ›› &nbsp;  <a [href]="'https://github.com/' + repo.owner + '/' + repo.project" target="_blank">try GitHub directly</a>
+      </li>
+    </ul>
+  </div>
+
   <h2 class="title is-2">Sortable table of {{ repositories.length | number }} GitHub repositories</h2>
+
   <p *ngIf="!repositories || repositories.length === 0">
     Please put some text containing GitHub URLs into the text area above.
   </p>
-  <div *ngIf="repositories && repositories.length > 0" class="table-container">
+
+  <div *ngIf="loading" class="loading">
+    <div class="lds-ripple">
+      <div></div>
+      <div></div>
+      <div></div>
+      <div></div>
+    </div>
+  </div>
+
+  <div *ngIf="!loading && repositories && repositories.length > 0" class="table-container">
     <table class="table is-striped is-hoverable is-fullwidth">
       <thead>
         <tr>

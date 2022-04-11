@@ -1,5 +1,9 @@
 import { PlatformLocation } from '@angular/common';
-import { Component } from '@angular/core';
+import { Component, OnDestroy } from '@angular/core';
+import { Subscription } from 'rxjs';
+import { environment } from '../environments/environment';
+import { GithubService } from './github.service';
+import { GithubServiceMock } from './github.service.mock';
 import { GitHubDetail, GitHubRepo } from './table/repository.model';
 
 @Component({
@@ -7,46 +11,52 @@ import { GitHubDetail, GitHubRepo } from './table/repository.model';
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.sass']
 })
-export class AppComponent {
+export class AppComponent implements OnDestroy {
 
   inputVisible = true;
   repositoryCache: string = '';
   repositoryDetails: GitHubDetail[] = [];
+  repositoryDetailsMissing: GitHubRepo[] = [];
+  repositoryDetailsLoading = false;
+
+  private gihubSubscription = new Subscription();
 
   constructor(
     readonly location: PlatformLocation,
+    private githubService: GithubService,
+    private githubServiceMock: GithubServiceMock,
   ) {}
 
-  randomInt(max: number): number {
-    return Math.floor(Math.random() * max);
-  }
+  fetchGitHubDetails(repositories: GitHubRepo[]): void {
+    this.repositoryDetailsLoading = true;
+    const service = environment.useRandomData ? this.githubServiceMock : this.githubService;
 
-  randomDate(): Date {
-    return new Date(
-      (2012 + this.randomInt(10)).toString()
-      + '-'
-      + (1 + this.randomInt(10)).toString()
-      + '-'
-      + (1 + this.randomInt(27)).toString()
+    this.gihubSubscription = service.fetchDetails(repositories).subscribe(
+      (details: GitHubDetail[]) => {
+        // Re-sort details into the same order as the input and find out which repos had no details
+        const repoDetails: GitHubDetail[] = [];
+        const missingRepos: GitHubRepo[] = [];
+
+        repositories.forEach((repo: GitHubRepo) => {
+          const matchingEntry = details.filter((detail: GitHubDetail) => detail.repo.owner === repo.owner && detail.repo.project === repo.project);
+          if (matchingEntry && matchingEntry.length > 0) {
+            if (matchingEntry.length > 1) {
+              console.error(`There are ${matchingEntry.length} matching details for the repository ${repo.owner} / ${repo.project}`);
+            }
+            repoDetails.push(matchingEntry[0]);
+          } else {
+            missingRepos.push(repo);
+          }
+        });
+
+        this.repositoryDetails = repoDetails;
+        this.repositoryDetailsMissing = missingRepos;
+        this.repositoryDetailsLoading = false;
+      }
     );
   }
 
-  fetchGitHubDetails(repositories: GitHubRepo[]): void {
-    this.repositoryDetails = repositories.map((repo: GitHubRepo) => new GitHubDetail(
-      repo,
-      'https://github.com/' + repo.owner + '/' + repo.project,
-      this.randomDate(),
-      this.randomDate(),
-      'v' + this.randomInt(3) + '.'  + this.randomInt(15) + '.' + this.randomInt(999),
-      this.randomInt(543),
-      this.randomInt(345),
-      this.randomInt(69),
-      this.randomInt(332),
-      this.randomInt(10),
-      this.randomInt(212),
-      this.randomInt(876),
-      this.randomInt(123),
-      ['MIT', 'Apache', 'BSD', 'GPLv2'][this.randomInt(4)]
-    ));
+  ngOnDestroy(): void {
+    this.gihubSubscription.unsubscribe();
   }
 }

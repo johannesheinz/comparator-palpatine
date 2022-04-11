@@ -36,6 +36,6 @@
 
 <app-input *ngIf="inputVisible" [inputText]="repositoryCache" (rawInputChanged)="repositoryCache = $event"  (inputChanged)="fetchGitHubDetails($event)" (hideInput)="inputVisible = false"></app-input>
 
-<app-table *ngIf="!inputVisible" [repositories]="repositoryDetails"></app-table>
+<app-table *ngIf="!inputVisible" [repositories]="repositoryDetails" [missing]="repositoryDetailsMissing" [loading]="repositoryDetailsLoading"></app-table>
 
 <app-about></app-about>

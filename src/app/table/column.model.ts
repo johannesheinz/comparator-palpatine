@@ -18,7 +18,8 @@ export enum ColumnId {
   TAGS = 9,
   ISSUES = 10,
   PULL_REQUESTS = 11,
-  FORKS = 12
+  FORKS = 12,
+  ARCHIVED = 13,
 }
 
 export class Column {

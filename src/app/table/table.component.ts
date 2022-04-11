@@ -1,27 +1,20 @@
-import { Component, Input, OnInit } from '@angular/core';
-import { GithubService } from '../github.service';
+import { Component, Input } from '@angular/core';
 import { Icon } from '../icon/icon.model';
 import { AVAILABLE_COLUMNS, Column, Sorted } from './column.model';
-import { GitHubDetail } from './repository.model';
+import { GitHubDetail, GitHubRepo } from './repository.model';
 
 @Component({
   selector: 'app-table',
   templateUrl: './table.component.html',
   styleUrls: ['./table.component.sass'],
 })
-export class TableComponent implements OnInit {
+export class TableComponent {
 
   @Input() repositories: GitHubDetail[] = [];
+  @Input() missing: GitHubRepo[] = [];
+  @Input() loading = false;
 
   readonly tableColumns = AVAILABLE_COLUMNS;
-
-  constructor(
-    private githubService: GithubService,
-  ) {}
-
-  ngOnInit(): void {
-    this.githubService.load();
-  }
 
   openUrl(url: string): void {
     window.open(url, '_blank');
